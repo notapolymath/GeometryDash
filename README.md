@@ -15,6 +15,7 @@ Complete:
 Ability to jump
 Pits & Obstacles
 Life counter(if touching obstacles, dead)
+
 Day 3
 Debug and test all minimum viable product features
 Moving map/background
