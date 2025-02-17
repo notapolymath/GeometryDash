@@ -1,12 +1,12 @@
+Box b;
+
 void setup() {
   fullScreen();
   background(51);
-  color c = color(random(256), random(256), random(256));
-  fill(c);
-  int size = 100;
-  square(width/2, height-size, size);
+  b = new Box();
 }
 
 void draw() {
-  rect(width/2, height, 100,100);
+  fill(b.c);
+  square(width/2, height-b.side, b.side);
 }
