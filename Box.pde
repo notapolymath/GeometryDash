@@ -10,6 +10,8 @@ class Box {
     this.x = 20;
     this.y = height-20;
     this.c = color(random(256), random(256), random(256));
+    fill(c);
+    square(this.x, this.y, this.side);
   }
   //Method
   public void jump() {
