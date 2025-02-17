@@ -18,3 +18,4 @@ class Box {
 public void sppedUp() {
 
 }
+}
