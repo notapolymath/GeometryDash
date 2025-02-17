@@ -11,5 +11,6 @@ void setup() {
 
 void draw() {
   fill(b.c);
+  stroke(255);
   square(width/2, height-b.side-100, b.side);
 }
