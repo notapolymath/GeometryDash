@@ -6,6 +6,7 @@ Complete:
 General layout
 Ability to move
 Square box
+
 Day 2
 Adrian: Ability to jump
 Anne: Ability to speed up
