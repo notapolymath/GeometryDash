@@ -8,9 +8,12 @@ class Box {
   //Constructor
   public Box() {
     this.x = width/2;
-    this.y = height-b.side-100;
+    this.y = height-this.side-100;
     this.side = 100;
     this.c = color(random(256), random(256), random(256));
     this.lives = 10;
+  }
+  void loseLife(){
+    this.lives--;
   }
 }

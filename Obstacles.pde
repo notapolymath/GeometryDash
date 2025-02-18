@@ -13,6 +13,15 @@ class Obstacles {
       fill(c);
       triangle(n + x, height-100, n + x + 80, height-100, n+
         x+ 40, height - 150);
+      noFill();
+      //noStroke();
+      square(n+ x+ 25, height - 150, 30);
+    }
+    int complete = 0;
+    if (n+x+40 < 0) {
+       complete ++;
+       if(complete > count){
+         textSize(128);
+      text("You win!", width/2, height/2);
     }
   }
-}
