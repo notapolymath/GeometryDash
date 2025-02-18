@@ -1,23 +1,30 @@
 Box b;
-int n = 0;
+Obstacles[] obstacles;
+int count = 100;
+int oDist = 200;
+float[]coords;
+color c = color(random(256), random(256), random(256));
 
 void setup() {
   fullScreen();
-  background(51);
   b = new Box();
-  strokeWeight(16);
-  line(0, height-100, width, height-100);
-  strokeWeight(4);
+  coords = new float[count];
+  obstacles = new Obstacles[count];
+  for (int i = 0; i < count; i++) {
+    coords[i] = oDist*i;
+    obstacles[i]= new Obstacles(coords[i]);
+  }
 }
 
 void draw() {
+  background(0);
+  strokeWeight(16);
+  line(0, height-100, width, height-100);
+  strokeWeight(4);
   fill(b.c);
   stroke(255);
   square(width/2, height-b.side-100, b.side);
-  int[]nums = new int[] {0, 80, 160, 240, 600, 900, 980, 1050, 2000, 280 };
-  for (int i = 0; i< nums.length; i++) {
-    n = nums[i];
-    triangle(n + (400), height-100, n + (400) + 80, height-100, n+
-      400 + 40, height - 50);
+  for (int i = 0; i < count; i++) {
+    obstacles[i].moveObstacles();
   }
 }
