@@ -19,9 +19,11 @@ class Obstacles {
     }
     int complete = 0;
     if (n+x+40 < 0) {
-       complete ++;
-       if(complete > count){
-         textSize(128);
-      text("You win!", width/2, height/2);
+      complete ++;
+      if (complete > count) {
+        textSize(128);
+        text("You win!", width/2, height/2);
+      }
     }
   }
+}
