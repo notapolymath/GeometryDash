@@ -36,7 +36,7 @@ void draw() {
 }
 
 void keyPressed() {
-  if (key == 'w') {
+  if (key == ' ') {
     b.jump();
   }
 }
