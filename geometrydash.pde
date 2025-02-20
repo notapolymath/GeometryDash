@@ -11,7 +11,6 @@ void setup() {
   obstacles = new Obstacles[count];
   int oDist = 200;
 
-  // Initializing obstacles' positions
   for (int i = 0; i < count; i++) {
     coords[i] = (b.side + oDist) * i;
     if (i > count / 2) {
@@ -28,9 +27,8 @@ void draw() {
   strokeWeight(4);
   fill(b.c);
   stroke(255);
-  square(width / 2, b.y, b.side);  // Draw the box
+  square(width / 2, b.y, b.side);
 
-  // Move obstacles
   for (int i = 0; i < count; i++) {
     obstacles[i].moveObstacles();
   }

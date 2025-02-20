@@ -21,18 +21,18 @@ class Box {
     this.lives--;
   }
   public void jump() {
-    if (this.y == height - this.side - 100) {  // Only jump if the box is on the ground
-      this.vy = -15;  // Set negative velocity for jump
+    if (this.y == height - this.side - 100) {  
+      this.vy = -15; 
     }
   }
   public void update() {
-    this.y += this.vy;  // Update position based on vertical velocity
+    this.y += this.vy;  
 
-    if (this.y > height - this.side - 100) {  // Make sure the box doesn't fall below the ground
+    if (this.y > height - this.side - 100) {  
       this.y = height - this.side - 100;
-      this.vy = 0;  // Stop falling when the box hits the ground
+      this.vy = 0;  
     } else {
-      this.vy += 1;  // Simulate gravity by increasing downward velocity
+      this.vy += 1;  
     }
   }
 }
