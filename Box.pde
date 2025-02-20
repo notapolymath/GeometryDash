@@ -12,7 +12,7 @@ class Box {
     this.x = width/2;
     this.y = height-this.side-100;
     this.side = 100;
-    this.c = color(random(256), random(256), random(256));
+    this.c = color(15, 34,210);
     this.lives = 10;
     this.y = height-side-100;
     this.vy = 100;
@@ -27,7 +27,6 @@ class Box {
   }
   public void update() {
     this.y += this.vy;  
-
     if (this.y > height - this.side - 100) {  
       this.y = height - this.side - 100;
       this.vy = 0;  
