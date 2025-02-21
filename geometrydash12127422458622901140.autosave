@@ -1,4 +1,4 @@
-Box b;
+ Box b;
 Obstacles[] obstacles;
 int state = 1;
 int count = 100;
@@ -6,16 +6,18 @@ int runs = 0;
 float[] coords;
 color c;
 float x = 0;
-int oDist1 = 300;
-int oDist2 = 200;
 
 void setup() {
   fullScreen();
   b = new Box();
   coords = new float[count];
   obstacles = new Obstacles[count];
+  int oDist = 300;
   for (int i = 0; i < count; i++) {
-    coords[i] = (b.side + oDist1) * i;
+    coords[i] = (b.side + oDist) * i;
+    if (i > count / 2) {
+      coords[i] = (b.side + oDist - count / 10) * i;
+    }
     obstacles[i] = new Obstacles(coords[i]);
   }
 }
@@ -50,40 +52,23 @@ void draw() {
   fill(b.c);
   stroke(255);
   square(width / 2, b.y, b.side);
-  if (state == -1) {
-    textSize(100);
-    text("You Lose. T-T Click space to restart", 50, height/2);
-  }
   if (state == 0) {
     textSize(128);
-    text("You win!", width/2-150, height/2);
+    text("You win!", width/2, height/2);
   }
   if (state == 1) {
-    textSize(128);
-    text("Level 1!", width/2-100, height/2);
     level1();
     runs++;
   }
   if (state == 2) {
-    textSize(128);
-    text("Level 2!", width/2-100, height/2);
     level2();
     runs++;
   }
 }
 
 void keyPressed() {
-  if (state == -1) {
-    if (key == ' ') {
-      state =1;
-    }
-  } else {
-    if (key == ' ') {
-      b.jump();
-    }
-    if (key == 'a') {
-      state = -1;
-    }
+  if (key == ' ') {
+    b.jump();
   }
 }
 
@@ -93,14 +78,13 @@ void level1() {
   }
   b.update();
   if (runs > 1000) {
-    runs = 0;
     state = 2;
   }
 }
 
 void level2() {
   for (int i = 0; i < count/2; i++) {
-    obstacles[i].vx = -15;
+    obstacles[i].vx = -100;
     obstacles[i].moveObstacles();
   }
   b.update();

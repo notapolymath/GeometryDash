@@ -5,14 +5,14 @@ class Box {
   public color c;
   public int side;
   public int lives;
-  public int vy;
+  public float vy;
 
   //Constructor
   public Box() {
     this.x = width/2;
     this.y = height-this.side-100;
     this.side = 100;
-    this.c = color(15, 34,210);
+    this.c = color(15, 34, 210);
     this.lives = 10;
     this.y = height-side-100;
     this.vy = 100;
@@ -21,17 +21,17 @@ class Box {
     this.lives--;
   }
   public void jump() {
-    if (this.y == height - this.side - 100) {  
-      this.vy = -15; 
+    if (this.y == height - this.side - 100) {
+      this.vy = -16;
     }
   }
   public void update() {
-    this.y += this.vy;  
-    if (this.y > height - this.side - 100) {  
+    this.y += this.vy;
+    if (this.y > height - this.side - 100) {
       this.y = height - this.side - 100;
-      this.vy = 0;  
+      this.vy = 0;
     } else {
-      this.vy += 1;  
+      this.vy += 1.5;
     }
   }
 }
