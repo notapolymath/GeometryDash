@@ -48,8 +48,14 @@ void draw() {
   line(0, height - 100, width, height - 100);
   strokeWeight(4);
   fill(b.c);
-  stroke(255);
+  stroke(0);
   square(width / 2, b.y, b.side);
+  fill(b.eye);
+  square(width / 2+10, b.y+10, b.side/3);
+  square(width / 2+b.side/2, b.y+10, b.side/3);
+  rect(width / 2+10, b.y+60,b.side-20, b.side/3);
+  fill(b.c);
+  stroke(255);
   if (state == -1) {
     textSize(100);
     text("You Lose. T-T Click space to restart", 50, height/2);

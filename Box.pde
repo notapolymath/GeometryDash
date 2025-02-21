@@ -6,6 +6,7 @@ class Box {
   public int side;
   public int lives;
   public float vy;
+  public color eye;
 
   //Constructor
   public Box() {
@@ -13,6 +14,7 @@ class Box {
     this.y = height-this.side-100;
     this.side = 100;
     this.c = color(15, 34, 210);
+    this.eye = color(0,170, 255);
     this.lives = 10;
     this.y = height-side-100;
     this.vy = 100;
