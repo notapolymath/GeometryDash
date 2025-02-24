@@ -7,11 +7,12 @@ class Obstacles {
   }
   void moveObstacles() {
     x+= vx;
-    float n = 0;
     for (int i = 0; i< count; i++) {
-      n = coords[i];
+      /*if () {
+        state = -1;
+      }*/
       fill(c);
-      triangle(n + x, height-100, n + x + 80, height-100, n+
+      triangle(x, height-100, x + 80, height-100,
         x+ 40, height - 150);
       //noFill();
       //noStroke();
@@ -19,3 +20,4 @@ class Obstacles {
     }
   }
 }
+                                                                                         

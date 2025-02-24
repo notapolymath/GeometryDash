@@ -1,27 +1,24 @@
-import processing.sound.*;
+//import processing.sound.*;
 
-SoundFile file;
+//SoundFile file;
 Box b;
 Obstacles[] obstacles;
 int state = 1;
 int count = 100;
 int runs = 0;
-float[] coords;
 color c;
 float x = 0;
 int oDist1 = 300;
 int oDist2 = 200;
 
 void setup() {
-  file = new SoundFile(this, "geometrydash.mp3");
-  file.play();
+  //file = new SoundFile(this, "geometrydash.mp3");
+  //file.play();
   fullScreen();
   b = new Box();
-  coords = new float[count];
   obstacles = new Obstacles[count];
   for (int i = 0; i < count; i++) {
-    coords[i] = (b.side + oDist1) * i;
-    obstacles[i] = new Obstacles(coords[i]);
+    obstacles[i] = new Obstacles((b.side + oDist1) * i);
   }
 }
 
@@ -58,7 +55,7 @@ void draw() {
   fill(b.eye);
   square(width / 2+10, b.y+10, b.side/3);
   square(width / 2+b.side/2, b.y+10, b.side/3);
-  rect(width / 2+10, b.y+60,b.side-20, b.side/3);
+  rect(width / 2+10, b.y+60, b.side-20, b.side/3);
   fill(b.c);
   stroke(255);
   if (state == -1) {
@@ -115,7 +112,7 @@ void level2() {
     obstacles[i].moveObstacles();
   }
   b.update();
-  if (runs > 1000) {
+  if (runs > 500) {
     state = 0;
   }
 }

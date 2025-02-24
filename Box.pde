@@ -11,16 +11,18 @@ class Box {
   //Constructor
   public Box() {
     this.x = width/2;
-    this.y = height-this.side-100;
     this.side = 100;
     this.c = color(15, 34, 210);
     this.eye = color(0,170, 255);
-    this.lives = 10;
+    this.lives = 11;
     this.y = height-side-100;
     this.vy = 100;
   }
   void loseLife() {
     this.lives--;
+    if(lives == 0){
+      state = -1;
+    }
   }
   public void jump() {
     if (this.y == height - this.side - 100) {
