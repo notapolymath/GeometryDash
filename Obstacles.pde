@@ -7,17 +7,8 @@ class Obstacles {
   }
   void moveObstacles() {
     x+= vx;
-    for (int i = 0; i< count; i++) {
-      /*if () {
-        state = -1;
-      }*/
-      fill(c);
-      triangle(x, height-100, x + 80, height-100,
-        x+ 40, height - 150);
-      //noFill();
-      //noStroke();
-      //rect(n+ x+ 25, height - 150, 30,50);
-    }
+    fill(c);
+    triangle(x, height-100, x + 80, height-100,
+      x+ 40, height - 150);
   }
 }
-                                                                                         

@@ -8,17 +8,17 @@ int count = 100;
 int runs = 0;
 color c;
 float x = 0;
-int oDist1 = 300;
-int oDist2 = 200;
+int oDist = 300;
 
 void setup() {
   //file = new SoundFile(this, "geometrydash.mp3");
   //file.play();
   fullScreen();
+  
   b = new Box();
   obstacles = new Obstacles[count];
   for (int i = 0; i < count; i++) {
-    obstacles[i] = new Obstacles((b.side + oDist1) * i);
+    obstacles[i] = new Obstacles(width+(b.side + oDist) * i);
   }
 }
 
@@ -68,13 +68,13 @@ void draw() {
   }
   if (state == 1) {
     textSize(128);
-    text("Level 1!", width/2-100, height/2);
+    text("Level 1!", width/2-150, height/2);
     level1();
     runs++;
   }
   if (state == 2) {
     textSize(128);
-    text("Level 2!", width/2-100, height/2);
+    text("Level 2!", width/2-150, height/2);
     level2();
     runs++;
   }
@@ -100,6 +100,7 @@ void level1() {
     obstacles[i].moveObstacles();
   }
   b.update();
+  
   if (runs > 1000) {
     runs = 0;
     state = 2;
@@ -112,7 +113,7 @@ void level2() {
     obstacles[i].moveObstacles();
   }
   b.update();
-  if (runs > 500) {
+  if (runs > 800) {
     state = 0;
   }
 }
