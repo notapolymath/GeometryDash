@@ -1,6 +1,8 @@
 import processing.sound.*;
 
 SoundFile file;
+SoundFile sadSound;
+sadSound = new SoundFile(this, "sadSound.wav");
 Box b;
 Obstacles[] obstacles;
 int state = 1;
@@ -61,6 +63,7 @@ void draw() {
   if (state == -1) {
     textSize(100);
     text("You Lose. T-T Click space to restart", 50, height/2);
+     sadSound.play();
   }
   if (state == 0) {
     textSize(128);
