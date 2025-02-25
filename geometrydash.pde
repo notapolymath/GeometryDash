@@ -8,7 +8,7 @@ int count = 100;
 int runs = 0;
 color c;
 float x = 0;
-int oDist = 300;
+int oDist = 500;
 
 void setup() {
   file = new SoundFile(this, "geometrydash.mp3");
@@ -102,6 +102,7 @@ void restart() {
   for (int i = 0; i < count; i++) {
     obstacles[i].x =(width+(b.side + oDist) * i);
   }
+  runs = 0;
   state =1;
 }
 
