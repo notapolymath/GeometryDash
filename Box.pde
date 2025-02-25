@@ -14,7 +14,7 @@ class Box {
     this.side = 100;
     this.c = color(15, 34, 210);
     this.eye = color(0,170, 255);
-    this.lives = 11;
+    this.lives = 1;
     this.y = height-side-100;
     this.vy = 100;
   }

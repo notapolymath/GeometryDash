@@ -14,7 +14,7 @@ void setup() {
   file = new SoundFile(this, "geometrydash.mp3");
   file.play();
   fullScreen();
-  
+
   b = new Box();
   obstacles = new Obstacles[count];
   for (int i = 0; i < count; i++) {
@@ -83,7 +83,7 @@ void draw() {
 void keyPressed() {
   if (state == -1) {
     if (key == ' ') {
-      state =1;
+      restart();
     }
   } else {
     if (key == ' ') {
@@ -95,12 +95,23 @@ void keyPressed() {
   }
 }
 
+void restart() {
+  b.x = width/2;
+  b.y=height-b.side-100;
+  b.lives = 1;
+  for (int i = 0; i < count; i++) {
+    obstacles[i].x =(width+(b.side + oDist) * i);
+  }
+  state =1;
+}
+
+
 void level1() {
   for (int i = 0; i < count; i++) {
     obstacles[i].moveObstacles();
   }
   b.update();
-  
+
   if (runs > 1000) {
     runs = 0;
     state = 2;
