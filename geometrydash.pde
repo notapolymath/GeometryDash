@@ -1,6 +1,6 @@
-//import processing.sound.*;
+import processing.sound.*;
 
-//SoundFile file;
+SoundFile file;
 Box b;
 Obstacles[] obstacles;
 int state = 1;
@@ -11,8 +11,8 @@ float x = 0;
 int oDist = 300;
 
 void setup() {
-  //file = new SoundFile(this, "geometrydash.mp3");
-  //file.play();
+  file = new SoundFile(this, "geometrydash.mp3");
+  file.play();
   fullScreen();
   
   b = new Box();
