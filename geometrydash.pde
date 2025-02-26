@@ -65,6 +65,7 @@ void draw() {
 void keyPressed() {
   if (state == -1) {
     if (key == ' ') {
+      sadSound.stop();
       restart();
     }
   } else {

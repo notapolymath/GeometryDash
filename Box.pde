@@ -26,7 +26,7 @@ class Box {
   }
   public void jump() {
     if (this.y == height - this.side - 100) {
-      this.vy = -16;
+      this.vy = -20;
     }
   }
   public void update() {
