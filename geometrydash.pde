@@ -2,7 +2,6 @@ import processing.sound.*;
 
 SoundFile file;
 SoundFile sadSound;
-//sadSound = new SoundFile(this, "sadSound.wav");
 Box b;
 Obstacles[] obstacles;
 int state = 1;
@@ -14,6 +13,7 @@ int oDist = 500;
 
 void setup() {
   file = new SoundFile(this, "geometrydash.mp3");
+  sadSound = new SoundFile(this, "sadSound.wav");
   file.play();
   fullScreen();
 
@@ -43,7 +43,6 @@ void draw() {
   if (state == -1) {
     textSize(100);
     text("You Lose. T-T Click space to restart", 50, height/2);
-     sadSound.play();
   }
   if (state == 0) {
     textSize(128);
@@ -114,8 +113,8 @@ void level2() {
   }
 }
 
-void updateBackground(float x){
-    for (int i = 0; i < 500; i++) {
+void updateBackground(float x) {
+  for (int i = 0; i < 500; i++) {
     fill(159, 212, 243);
     rect(0+x-(width*i), 4, 3*width/40, height/6);
     rect(11*width/120+x-(width*i), 4, width/8, height/8);

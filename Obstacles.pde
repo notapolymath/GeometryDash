@@ -14,6 +14,7 @@ class Obstacles {
       b.lives--;
       if (b.lives < 1) {
         state = -1;
+        sadSound.play();
       }
     }
   }
