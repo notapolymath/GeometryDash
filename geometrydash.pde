@@ -2,6 +2,7 @@ import processing.sound.*;
 
 SoundFile file;
 SoundFile sadSound;
+SoundFile levelUp;
 Box b;
 Obstacles[] obstacles;
 int state = 1;
@@ -15,6 +16,7 @@ int attempts = 1;
 void setup() {
   file = new SoundFile(this, "geometrydash.mp3");
   sadSound = new SoundFile(this, "sadSound.wav");
+  levelUp = new SoundFile(this, "levelUp.wav");
   file.play();
   fullScreen();
 
@@ -51,7 +53,7 @@ void draw() {
   }
   if (state == 1) {
     textSize(72);
-    text("Attempt " + str(attempts),50, 100);
+    text("Attempt " + str(attempts), 50, 100);
     textSize(128);
     text("Level 1!", width/2-165, height/2);
     level1();
@@ -107,6 +109,7 @@ void level1() {
   if (runs > 600) {
     runs = 0;
     state = 2;
+    levelUp.play();
   }
 }
 
