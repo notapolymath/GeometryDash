@@ -2,7 +2,7 @@ import processing.sound.*;
 
 SoundFile file;
 SoundFile sadSound;
-sadSound = new SoundFile(this, "sadSound.wav");
+//sadSound = new SoundFile(this, "sadSound.wav");
 Box b;
 Obstacles[] obstacles;
 int state = 1;
@@ -84,6 +84,7 @@ void restart() {
   b.lives = 1;
   for (int i = 0; i < count; i++) {
     obstacles[i].x =(width+(b.side + oDist) * i);
+    obstacles[i].vx = -10;
   }
   runs = 0;
   state =1;
