@@ -10,6 +10,7 @@ int runs = 0;
 color c;
 float x = 0;
 int oDist = 500;
+int attempts = 1;
 
 void setup() {
   file = new SoundFile(this, "geometrydash.mp3");
@@ -33,11 +34,11 @@ void draw() {
   strokeWeight(4);
   fill(b.c);
   stroke(0);
-  square(width / 2, b.y, b.side);
+  square(width/2-b.side/2, b.y, b.side);
   fill(b.eye);
-  square(width / 2+10, b.y+10, b.side/3);
-  square(width / 2+b.side/2, b.y+10, b.side/3);
-  rect(width / 2+10, b.y+60, b.side-20, b.side/3);
+  square(width / 2+10-b.side/2, b.y+10, b.side/3);
+  square(width / 2, b.y+10, b.side/3);
+  rect(width/ 2+10-b.side/2, b.y+60, b.side-20, b.side/3);
   fill(b.c);
   stroke(255);
   if (state == -1) {
@@ -46,17 +47,19 @@ void draw() {
   }
   if (state == 0) {
     textSize(128);
-    text("You win!", width/2-150, height/2);
+    text("You win! Click space to try again!", 70, height/2);
   }
   if (state == 1) {
+    textSize(72);
+    text("Attempt " + str(attempts),50, 100);
     textSize(128);
-    text("Level 1!", width/2-150, height/2);
+    text("Level 1!", width/2-165, height/2);
     level1();
     runs++;
   }
   if (state == 2) {
     textSize(128);
-    text("Level 2!", width/2-150, height/2);
+    text("Level 2!", width/2-165, height/2);
     level2();
     runs++;
   }
@@ -66,14 +69,18 @@ void keyPressed() {
   if (state == -1) {
     if (key == ' ') {
       sadSound.stop();
+      attempts++;
+      restart();
+    }
+  } else if (state == 0) {
+    if (key == ' ') {
+      //sadSound.stop();
+      attempts = 1;
       restart();
     }
   } else {
     if (key == ' ') {
       b.jump();
-    }
-    if (key == 'a') {
-      state = -1;
     }
   }
 }
@@ -97,7 +104,7 @@ void level1() {
   }
   b.update();
 
-  if (runs > 1000) {
+  if (runs > 600) {
     runs = 0;
     state = 2;
   }
@@ -109,7 +116,8 @@ void level2() {
     obstacles[i].moveObstacles();
   }
   b.update();
-  if (runs > 800) {
+  if (runs > 600) {
+    attempts = 1;
     state = 0;
   }
 }
