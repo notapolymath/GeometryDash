@@ -6,13 +6,14 @@ SoundFile levelUp;
 Box b;
 Obstacles[] obstacles;
 int state = 1;
-int count = 100;
 int runs = 0;
 color c;
 float x = 0;
 int oDist = 500;
 int attempts = 1;
 boolean isPaused = false;
+int count = 100;
+
 
 void setup() {
   file = new SoundFile(this, "geometrydash.mp3");
@@ -20,11 +21,18 @@ void setup() {
   levelUp = new SoundFile(this, "levelUp.wav");
   file.play();
   fullScreen();
-
   b = new Box();
   obstacles = new Obstacles[count];
   for (int i = 0; i < count; i++) {
-    obstacles[i] = new Obstacles(width+(b.side + oDist) * i);
+    obstacles[i] = new Obstacles(width+(i+1)*(b.side + oDist)+ random(-20, 20));
+    if (i%3 == 0 && i > 15) {
+      obstacles[i] = new Obstacles((width+i*(b.side + oDist))+b.side+ random(10));
+    } else if (i%5 == 0 && i > 1 && i < 10) {
+      obstacles[i] = new Obstacles(-b.side);
+    } 
+    else if (i > 10) {
+      obstacles[i] = new Obstacles(width+(i+1)*(b.side + oDist)+ random(-30, 30));
+    }
   }
 }
 
@@ -38,11 +46,11 @@ void draw() {
     strokeWeight(4);
     fill(b.c);
     stroke(0);
-    square(width/2, b.y, b.side);
+    square(width/2-300, b.y, b.side);
     fill(b.eye);
-    square(width / 2+10, b.y+10, b.side/3);
-    square(width / 2+ b.side/2, b.y+10, b.side/3);
-    rect(width/ 2+10, b.y+60, b.side-20, b.side/3);
+    square(width / 2-290, b.y+10, b.side/3);
+    square(width / 2-300+ b.side/2, b.y+10, b.side/3);
+    rect(width/ 2-290, b.y+60, b.side-20, b.side/3);
     fill(b.c);
     stroke(255);
     if (state == -1) {
@@ -103,7 +111,12 @@ void restart() {
   b.y=height-b.side-100;
   b.lives = 1;
   for (int i = 0; i < count; i++) {
-    obstacles[i].x =(width+(b.side + oDist) * i);
+    obstacles[i] = new Obstacles(width+(i+1)*(b.side + oDist + random(-20, 20)));
+    if (i%3 == 0 && i > 15) {
+      obstacles[i] = new Obstacles((width+i*(b.side + oDist))+b.side+ random(-20, 20));
+    } else if (i%5 == 0 && i > 1 && i < 10) {
+      obstacles[i] = new Obstacles(-b.side);
+    }
     obstacles[i].vx = -10;
   }
   runs = 0;
@@ -117,7 +130,7 @@ void level1() {
   }
   b.update();
 
-  if (runs > 600) {
+  if (runs > 800) {
     runs = 0;
     state = 2;
     levelUp.play();
@@ -130,7 +143,7 @@ void level2() {
     obstacles[i].moveObstacles();
   }
   b.update();
-  if (runs > 600) {
+  if (runs > 800) {
     attempts = 1;
     state = 0;
   }

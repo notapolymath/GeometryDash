@@ -10,7 +10,7 @@ class Box {
 
   //Constructor
   public Box() {
-    this.x = width/2;
+    this.x = (width/2)-300;
     this.side = 100;
     this.c = color(15, 34, 210);
     this.eye = color(0,170, 255);
