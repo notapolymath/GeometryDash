@@ -29,8 +29,7 @@ void setup() {
       obstacles[i] = new Obstacles((width+i*(b.side + oDist))+b.side+ random(10));
     } else if (i%5 == 0 && i > 1 && i < 10) {
       obstacles[i] = new Obstacles(-b.side);
-    } 
-    else if (i > 10) {
+    } else if (i > 10) {
       obstacles[i] = new Obstacles(width+(i+1)*(b.side + oDist)+ random(-30, 30));
     }
   }
@@ -41,8 +40,6 @@ void draw() {
     background(185, 230, 255);
     updateBackground(x);
     x+=0.8;
-    strokeWeight(16);
-    line(0, height - 100, width, height - 100);
     strokeWeight(4);
     fill(b.c);
     stroke(0);
@@ -51,11 +48,14 @@ void draw() {
     square(width / 2-290, b.y+10, b.side/3);
     square(width / 2-300+ b.side/2, b.y+10, b.side/3);
     rect(width/ 2-290, b.y+60, b.side-20, b.side/3);
-    fill(b.c);
+    updateSparks(b.x, b.y, b.vy);
+    strokeWeight(16);
     stroke(255);
+    line(0, height - 90, width, height - 100);
+    strokeWeight(4);
+    fill(b.c);
     if (state == -1) {
-      textSize(100);
-      text("You Lose. T-T Click space to restart", 50, height/2);
+      dead();
     }
     if (state == 0) {
       textSize(100);
@@ -104,6 +104,21 @@ void keyPressed() {
       }
     }
   }
+}
+
+void dead() {
+  background(0);
+  updateBackground(x);
+  fill(b.eye);
+  square(width / 2-290, b.y+10, b.side/3);
+  square(width / 2-300+ b.side/2, b.y+10, b.side/3);
+  rect(width/ 2-290, b.y+60, b.side-20, b.side/3);
+  strokeWeight(16);
+  stroke(255);
+  line(0, height - 90, width, height - 100);
+  fill(255, 0, 0);
+  textSize(100);
+  text("You Lose. T-T Click space to restart", 50, height/2);
 }
 
 void restart() {
@@ -170,5 +185,56 @@ void updateBackground(float x) {
     rect(7*width/10+x-(width*i), 3*height/5, 3*width/40, height/8);
     rect(19*width/24+x-(width*i), 5*height/12, 11*width/60, 47*height/120);
     rect(7*width/10+x-(width*i), 33*height/40, 17*width/60, 19*height/120);
+    for (int j = 0; j < 10; j++) {
+      noStroke();
+      fill(159, 212, 243, 100); //make it fade
+      rect(0, height-100 + 10*j, width, height);
+    }
   }
+}
+
+void updateSparks(float x, float y, float vy) {
+  noStroke();
+  fill(0, 255, 0);
+  int runs = 0;
+  if (runs%2==0) {
+    //arraylist
+
+    square(width / 2-320, b.y + b.side-10, 15);
+    square(width / 2-330, b.y + b.side-20, 15);
+    square(width / 2-340, b.y + b.side-10, 14);
+    square(width / 2-350, b.y + b.side-20, 15);
+    square(width / 2-360, b.y + b.side-11, 14);
+    square(width / 2-370, b.y + b.side-21, 13);
+    square(width / 2-380, b.y + b.side-11, 13);
+    square(width / 2-390, b.y + b.side-21, 12);
+    square(width / 2-400, b.y + b.side-12, 12);
+    square(width / 2-410, b.y + b.side-22, 11);
+    square(width / 2-420, b.y + b.side-12, 11);
+    square(width / 2-430, b.y + b.side-22, 10);
+    square(width / 2-440, b.y + b.side-13, 10);
+    square(width / 2-450, b.y + b.side-23, 9);
+    square(width / 2-460, b.y + b.side-13, 9);
+    square(width / 2-470, b.y + b.side-23, 8);
+    square(width / 2-480, b.y + b.side-13, 8);
+  } else {
+    square(width / 2-320, b.y + b.side-20, 15);
+    square(width / 2-330, b.y + b.side-10, 15);
+    square(width / 2-340, b.y + b.side-20, 14);
+    square(width / 2-350, b.y + b.side-10, 15);
+    square(width / 2-360, b.y + b.side-21, 14);
+    square(width / 2-370, b.y + b.side-11, 13);
+    square(width / 2-380, b.y + b.side-21, 13);
+    square(width / 2-390, b.y + b.side-11, 12);
+    square(width / 2-400, b.y + b.side-22, 12);
+    square(width / 2-410, b.y + b.side-12, 11);
+    square(width / 2-420, b.y + b.side-22, 11);
+    square(width / 2-430, b.y + b.side-12, 10);
+    square(width / 2-440, b.y + b.side-23, 10);
+    square(width / 2-450, b.y + b.side-13, 9);
+    square(width / 2-460, b.y + b.side-23, 9);
+    square(width / 2-470, b.y + b.side-13, 8);
+    square(width / 2-480, b.y + b.side-23, 8);
+  }
+  runs++;
 }
