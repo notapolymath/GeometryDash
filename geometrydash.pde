@@ -107,7 +107,7 @@ void keyPressed() {
 }
 
 void restart() {
-  b.x = width/2;
+  b.x = (width/2)-300;
   b.y=height-b.side-100;
   b.lives = 1;
   for (int i = 0; i < count; i++) {
