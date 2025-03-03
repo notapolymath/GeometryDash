@@ -183,6 +183,7 @@ void level2() {
 }
 
 void updateBackground(float x) {
+  noStroke();
   for (int i = 0; i < 500; i++) {
     fill(159, 212, 243);
     rect(0+x-(width*i), 4, 3*width/40, height/6);
@@ -204,6 +205,7 @@ void updateBackground(float x) {
     rect(19*width/24+x-(width*i), 5*height/12, 11*width/60, 47*height/120);
     rect(7*width/10+x-(width*i), 33*height/40, 17*width/60, 19*height/120);
   }
+  stroke(0);
 }
 void stripes(int n) {
   noStroke();
