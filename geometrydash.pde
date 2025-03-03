@@ -60,16 +60,18 @@ void draw() {
     strokeWeight(4);
     fill(b.c);
     b.update();
-    if (b.y != height - b.side - 100){
-    pushMatrix();
-    translate ((width/2)-250, b.y+50);
-    rotate (.005 * millis());
-    square(-((width/2)-250)/9.5, -(b.y+50)/15, 100);
-    square(-40, -40, b.side/3);
-    square(0, -40, b.side/3);
-    rect(-40, 0, b.side-20, b.side/3);
-    popMatrix();
-    } 
+    if (b.y != height - b.side - 100) {
+      fill(b.c);
+      stroke(255);
+      pushMatrix();
+      translate ((width/2)-250, b.y+50);
+      rotate (.005 * millis());
+      square(-((width/2)-250)/9.5, -(b.y+50)/15, 100);
+      square(-40, -40, b.side/3);
+      square(0, -40, b.side/3);
+      rect(-40, 0, b.side-20, b.side/3);
+      popMatrix();
+    }
     if (state == -1) {
       dead();
     }
