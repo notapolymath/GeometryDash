@@ -5,6 +5,7 @@ SoundFile sadSound;
 SoundFile levelUp;
 Box b;
 Obstacles[] obstacles;
+ParticleTrail particleTrail;
 int state = 1;
 int runs = 0;
 color c;
@@ -23,6 +24,7 @@ void setup() {
   fullScreen();
   b = new Box();
   obstacles = new Obstacles[count];
+  particleTrail = new ParticleTrail(20);
   for (int i = 0; i < count; i++) {
     obstacles[i] = new Obstacles(width+(i+1)*(b.side + oDist)+ random(-20, 20));
     if (i%3 == 0 && i > 15) {
@@ -57,6 +59,17 @@ void draw() {
     line(0, height - 90, width, height - 100);
     strokeWeight(4);
     fill(b.c);
+    b.update();
+    if (b.y != height - b.side - 100){
+    pushMatrix();
+    translate ((width/2)-250, b.y+50);
+    rotate (.005 * millis());
+    square(-((width/2)-250)/9.5, -(b.y+50)/15, 100);
+    square(-40, -40, b.side/3);
+    square(0, -40, b.side/3);
+    rect(-40, 0, b.side-20, b.side/3);
+    popMatrix();
+    } 
     if (state == -1) {
       dead();
     }
@@ -148,7 +161,6 @@ void level1() {
   for (int i = 0; i < count; i++) {
     obstacles[i].moveObstacles();
   }
-  b.update();
 
   if (runs > 800) {
     runs = 0;
@@ -162,7 +174,6 @@ void level2() {
     obstacles[i].vx = -15;
     obstacles[i].moveObstacles();
   }
-  b.update();
   if (runs > 800) {
     attempts = 1;
     state = 0;
@@ -195,7 +206,7 @@ void updateBackground(float x) {
 void stripes(int n) {
   noStroke();
   for (float i = 0; i < n; i = i + 1) {
-    fill(i*255/n, (n-i) * 255/n, 0);
+    fill(i*255/n, 0, (n-i) * 255/n);
     rect(i * width/n, 0, width/n, height);
   }
 }

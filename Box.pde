@@ -13,14 +13,14 @@ class Box {
     this.x = (width/2)-300;
     this.side = 100;
     this.c = color(15, 34, 210);
-    this.eye = color(0,170, 255);
+    this.eye = color(0, 170, 255);
     this.lives = 1;
     this.y = height-side-100;
     this.vy = 100;
   }
   void loseLife() {
     this.lives--;
-    if(lives == 0){
+    if (lives == 0) {
       state = -1;
     }
   }
@@ -31,6 +31,8 @@ class Box {
   }
   public void update() {
     this.y += this.vy;
+    particleTrail.update(b.x, b.y);
+    particleTrail.render();
     if (this.y > height - this.side - 100) {
       this.y = height - this.side - 100;
       this.vy = 0;
