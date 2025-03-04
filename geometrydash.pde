@@ -46,30 +46,21 @@ void draw() {
     }
     updateBackground(x);
     x+=0.8;
-    strokeWeight(4);
-    fill(b.c);
-    stroke(0);
-    square(width/2-300, b.y, b.side);
-    fill(b.eye);
-    square(width / 2-290, b.y+10, b.side/3);
-    square(width / 2-300+ b.side/2, b.y+10, b.side/3);
-    rect(width/ 2-290, b.y+60, b.side-20, b.side/3);
     strokeWeight(16);
     stroke(255);
     line(0, height - 90, width, height - 100);
     strokeWeight(4);
-    fill(b.c);
     b.update();
     if (b.y != height - b.side - 100) {
-      fill(b.c);
-      stroke(255);
       pushMatrix();
       translate ((width/2)-250, b.y+50);
-      rotate (.005 * millis());
-      square(-((width/2)-250)/9.5, -(b.y+50)/15, 100);
-      square(-40, -40, b.side/3);
-      square(0, -40, b.side/3);
-      rect(-40, 0, b.side-20, b.side/3);
+      rotate (.008 * millis());
+      b.display();
+      popMatrix();
+    } else {
+      pushMatrix();
+      translate ((width/2)-250, b.y+50);
+      b.display();
       popMatrix();
     }
     if (state == -1) {
@@ -118,6 +109,9 @@ void keyPressed() {
     if (key == 'm') {
       isPaused = true;
     }
+    if (key == 'r') {
+      restart();
+    }
     if (isPaused == true) {
       if (key == 'n') {
         isPaused = false;
@@ -129,16 +123,14 @@ void keyPressed() {
 void dead() {
   background(0);
   updateBackground(x);
-  fill(b.eye);
-  square(width / 2-290, b.y+10, b.side/3);
-  square(width / 2-300+ b.side/2, b.y+10, b.side/3);
-  rect(width/ 2-290, b.y+60, b.side-20, b.side/3);
   strokeWeight(16);
   stroke(255);
   line(0, height - 90, width, height - 100);
   fill(255, 0, 0);
   textSize(100);
   text("You Lose. T-T Click space to restart", 50, height/2);
+  translate ((width/2)-250, b.y+50);
+  b.display();
 }
 
 void restart() {
@@ -183,7 +175,6 @@ void level2() {
 }
 
 void updateBackground(float x) {
-  noStroke();
   for (int i = 0; i < 500; i++) {
     fill(159, 212, 243);
     rect(0+x-(width*i), 4, 3*width/40, height/6);
