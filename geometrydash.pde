@@ -14,6 +14,7 @@ int oDist = 500;
 int attempts = 1;
 boolean isPaused = false;
 int count = 100;
+int start = -1;
 
 
 void setup() {
@@ -41,6 +42,8 @@ void draw() {
   if (isPaused == false) {
     if (state == 2) {
       stripes(100);
+    } else if (state == 3) {
+      stripes(150);
     } else {
       background(185, 230, 255);
     }
@@ -64,12 +67,18 @@ void draw() {
       b.display();
       popMatrix();
     }
+    if (start > 0 && frameCount < start + 15) {
+      if (b.y == height - b.side - 100) {
+        b.vy = -20;
+        start = -1;
+      }
+    }
     if (state == -1) {
       dead();
     }
     if (state == 0) {
       textSize(100);
-      text("You win! Click space to try again!", 70, height/2);
+      text("You win! Click space to try L3!", 70, height/2);
     }
     if (state == 1) {
       textSize(72);
@@ -88,6 +97,13 @@ void draw() {
       level2();
       runs++;
     }
+    if (state == 3) {
+      textSize(128);
+      fill(b.c);
+      text("Level 3!", width/2-165, height/2);
+      level3();
+      runs++;
+    }
   }
 }
 void keyPressed() {
@@ -96,12 +112,13 @@ void keyPressed() {
       sadSound.stop();
       attempts++;
       restart();
+      state = 1;
     }
   } else if (state == 0) {
     if (key == ' ') {
-      //sadSound.stop();
       attempts = 1;
       restart();
+      state = 3;
     }
   } else {
     if (key == ' ') {
@@ -112,6 +129,9 @@ void keyPressed() {
     }
     if (key == 'r') {
       restart();
+    }
+    if (key == 'w') {
+      state = 0;
     }
     if (isPaused == true) {
       if (key == 'n') {
@@ -148,7 +168,6 @@ void restart() {
     obstacles[i].vx = -10;
   }
   runs = 0;
-  state =1;
 }
 
 
@@ -167,6 +186,17 @@ void level1() {
 void level2() {
   for (int i = 0; i < count/2; i++) {
     obstacles[i].vx = -15;
+    obstacles[i].moveObstacles();
+  }
+  if (runs > 800) {
+    attempts = 1;
+    state = 0;
+  }
+}
+
+void level3() {
+  for (int i = 0; i < count/2; i++) {
+    obstacles[i].vx = -20;
     obstacles[i].moveObstacles();
   }
   if (runs > 800) {
