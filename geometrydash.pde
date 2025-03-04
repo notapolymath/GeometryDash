@@ -44,6 +44,7 @@ void draw() {
     } else {
       background(185, 230, 255);
     }
+    noStroke();
     updateBackground(x);
     x+=0.8;
     strokeWeight(16);
@@ -72,7 +73,7 @@ void draw() {
     }
     if (state == 1) {
       textSize(72);
-      fill(0);
+      fill(b.c);
       text("Attempt " + str(attempts), 50, 100);
       textSize(128);
 
@@ -82,7 +83,7 @@ void draw() {
     }
     if (state == 2) {
       textSize(128);
-      fill(0);
+      fill(b.c);
       text("Level 2!", width/2-165, height/2);
       level2();
       runs++;
@@ -124,7 +125,7 @@ void dead() {
   background(0);
   updateBackground(x);
   strokeWeight(16);
-  stroke(255);
+  stroke(100);
   line(0, height - 90, width, height - 100);
   fill(255, 0, 0);
   textSize(100);
