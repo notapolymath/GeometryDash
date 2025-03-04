@@ -40,4 +40,13 @@ class Box {
       this.vy += 1.5;
     }
   }
+  public void display() {
+    fill(c);
+    stroke(0);
+    rect(-((width/2)-250)/9.5, -(b.y+50)/15, side, side, 10);
+    fill(eye);
+    square(-40, -40, b.side/3);
+    square(0, -40, b.side/3);
+    rect(-35, 5, 70, 30);
+  }
 }
