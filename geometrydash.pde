@@ -41,10 +41,11 @@ void draw() {
   if (isPaused == false) {
     if (state == 2) {
       stripes(100);
+    } else if(state == 0) {
+      background(0);
     } else {
-      background(185, 230, 255);
+      stripesTwo(100);
     }
-    noStroke();
     updateBackground(x);
     x+=0.8;
     strokeWeight(16);
@@ -73,7 +74,7 @@ void draw() {
     }
     if (state == 1) {
       textSize(72);
-      fill(b.c);
+      fill(0);
       text("Attempt " + str(attempts), 50, 100);
       textSize(128);
 
@@ -83,7 +84,7 @@ void draw() {
     }
     if (state == 2) {
       textSize(128);
-      fill(b.c);
+      fill(0);
       text("Level 2!", width/2-165, height/2);
       level2();
       runs++;
@@ -125,7 +126,7 @@ void dead() {
   background(0);
   updateBackground(x);
   strokeWeight(16);
-  stroke(100);
+  stroke(255);
   line(0, height - 90, width, height - 100);
   fill(255, 0, 0);
   textSize(100);
@@ -177,7 +178,11 @@ void level2() {
 
 void updateBackground(float x) {
   for (int i = 0; i < 500; i++) {
-    fill(159, 212, 243);
+    if(state == -1 || state == 0) {
+      fill(0);
+    } else {
+            fill(255);
+    }
     rect(0+x-(width*i), 4, 3*width/40, height/6);
     rect(11*width/120+x-(width*i), 4, width/8, height/8);
     rect(7*width/30+x-(width*i), 4, 9*width/40, height/4);
@@ -203,6 +208,13 @@ void stripes(int n) {
   noStroke();
   for (float i = 0; i < n; i = i + 1) {
     fill(i*255/n, 0, (n-i) * 255/n);
+    rect(i * width/n, 0, width/n, height);
+  }
+}
+void stripesTwo(int n) {
+  noStroke();
+  for (float i = 0; i < n; i = i + 1) {
+    fill(0,(n-i) * 255/n, i*255/n);
     rect(i * width/n, 0, width/n, height);
   }
 }
