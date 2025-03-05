@@ -86,7 +86,8 @@ void draw() {
     }
     if (state == 4) {
       textSize(100);
-      text("You won all the levels! Click space to restart!", 50, height/2);
+      text("You won all the levels!", width/2-450, height/2);
+      text("Click space to restart!",width/2-450, height/2+100);
     }
     if (state == 1) {
       textSize(72);
@@ -146,6 +147,9 @@ void keyPressed() {
     }
     if (key == 'w') {
       state = 0;
+    }
+    if (key == 'q') {
+      state = 4 ;
     }
     if (isPaused == true) {
       if (key == 'n') {
