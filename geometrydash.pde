@@ -87,7 +87,7 @@ void draw() {
     if (state == 4) {
       textSize(100);
       text("You won all the levels!", width/2-450, height/2);
-      text("Click space to restart!",width/2-450, height/2+100);
+      text("Click space to restart!", width/2-450, height/2+100);
     }
     if (state == 1) {
       textSize(72);
@@ -128,29 +128,34 @@ void keyPressed() {
       attempts = 1;
       restart();
       state = 3;
-    } else if (state == 4) {
-      if (key == ' ') {
-        attempts = 1;
-        restart();
-        state = 1;
-      }
+    }
+  } else if (state == 4) {
+    if (key == ' ') {
+      attempts = 1;
+      restart();
+      state = 1;
     }
   } else {
     if (key == ' ') {
       b.jump();
     }
+    // Debugging tools: pause game
     if (key == 'm') {
       isPaused = true;
     }
+    // Debugging tools: restart
     if (key == 'r') {
       restart();
     }
+    // Debugging tools: first win screen
     if (key == 'w') {
       state = 0;
     }
+    // Debugging tools: final win screen
     if (key == 'q') {
       state = 4 ;
     }
+    // Debugging tools: resume game
     if (isPaused == true) {
       if (key == 'n') {
         isPaused = false;

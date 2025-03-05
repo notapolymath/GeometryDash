@@ -1,11 +1,11 @@
-class Obstacle {
+class Obstacles {
   public float x;
   public float vx;
-  public Obstacle(float x) {
+  public Obstacles(float x) {
     this.x = x;
     this.vx = -10.0;
   }
-  void moveObstacle() {
+  void moveObstacles() {
     x+= vx;
     fill(c);
     triangle(x, height-100, x + 80, height-100,
