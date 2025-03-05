@@ -5,7 +5,7 @@ SoundFile file;
 SoundFile sadSound;
 SoundFile levelUp;
 Box b;
-Obstacle[] obstacle;
+Obstacles[] obstacle;
 ParticleTrail particleTrail;
 int state = 1;
 int runs = 0;
@@ -25,18 +25,18 @@ void setup() {
   file.play();
   fullScreen();
   b = new Box();
-  obstacle = new Obstacle[count];
+  obstacle = new Obstacles[count];
   particleTrail = new ParticleTrail(20);
   for (int i = 0; i < count; i++) {
-    obstacle[i] = new Obstacle(width+(i+1)*(b.side + oDist)+ random(-20, 20));
+    obstacle[i] = new Obstacles(width+(i+1)*(b.side + oDist)+ random(-20, 20));
     if (i%3 == 0 && i > 15) {
-      obstacle[i] = new Obstacle((width+i*(b.side + oDist))+b.side+ random(10));
+      obstacle[i] = new Obstacles((width+i*(b.side + oDist))+b.side+ random(10));
     } else if (i%5 == 0 && i > 1 && i < 10) {
-      obstacle[i] = new Obstacle(-b.side);
+      obstacle[i] = new Obstacles(-b.side);
     } else if (state == 2) {
-      obstacle[i] = new Obstacle(width+(i+1)*(b.side + oDist)+ random(-30, 30));
+      obstacle[i] = new Obstacles(width+(i+1)*(b.side + oDist)+ random(-30, 30));
     } else if (state == 3) {
-      obstacle[i] = new Obstacle(width+(i+1)*(b.side + oDist)+ random(-35, 35));
+      obstacle[i] = new Obstacles(width+(i+1)*(b.side + oDist)+ random(-35, 35));
     }
   }
 }
@@ -176,11 +176,11 @@ void restart() {
   b.y=height-b.side-100;
   b.lives = 1;
   for (int i = 0; i < count; i++) {
-    obstacle[i] = new Obstacle(width+(i+1)*(b.side + oDist + random(-20, 20)));
+    obstacle[i] = new Obstacles(width+(i+1)*(b.side + oDist + random(-20, 20)));
     if (i%3 == 0 && i > 15) {
-      obstacle[i] = new Obstacle((width+i*(b.side + oDist))+b.side+ random(-20, 20));
+      obstacle[i] = new Obstacles((width+i*(b.side + oDist))+b.side+ random(-20, 20));
     } else if (i%5 == 0 && i > 1 && i < 10) {
-      obstacle[i] = new Obstacle(-b.side);
+      obstacle[i] = new Obstacles(-b.side);
     }
     obstacle[i].vx = -10;
   }
@@ -190,7 +190,7 @@ void restart() {
 
 void level1() {
   for (int i = 0; i < count; i++) {
-    obstacle[i].moveObstacle();
+    obstacle[i].moveObstacles();
   }
 
   if (runs > 800) {
@@ -203,7 +203,7 @@ void level1() {
 void level2() {
   for (int i = 0; i < count/2; i++) {
     obstacle[i].vx = -15;
-    obstacle[i].moveObstacle();
+    obstacle[i].moveObstacles();
   }
   if (runs > 800) {
     attempts = 1;
@@ -214,7 +214,7 @@ void level2() {
 void level3() {
   for (int i = 0; i < count/2; i++) {
     obstacle[i].vx = -20;
-    obstacle[i].moveObstacle();
+    obstacle[i].moveObstacles();
   }
   if (runs > 800) {
     attempts = 1;
