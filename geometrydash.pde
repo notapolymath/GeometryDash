@@ -52,7 +52,7 @@ void draw() {
     updateBackground(x);
     x+=0.8;
     strokeWeight(16);
-    stroke(255);
+    stroke(0);
     line(0, height - 90, width, height - 100);
     strokeWeight(4);
     b.update();
