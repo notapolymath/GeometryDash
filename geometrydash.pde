@@ -1,3 +1,4 @@
+//Made by Adrian, Anne, and Brianna
 import processing.sound.*;
 
 SoundFile file;
@@ -32,8 +33,11 @@ void setup() {
       obstacles[i] = new Obstacles((width+i*(b.side + oDist))+b.side+ random(10));
     } else if (i%5 == 0 && i > 1 && i < 10) {
       obstacles[i] = new Obstacles(-b.side);
-    } else if (i > 10) {
+    } else if (state == 2) {
       obstacles[i] = new Obstacles(width+(i+1)*(b.side + oDist)+ random(-30, 30));
+    }
+    else if (state == 3) {
+      obstacles[i] = new Obstacles(width+(i+1)*(b.side + oDist)+ random(-35, 35));
     }
   }
 }
